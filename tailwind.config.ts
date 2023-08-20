@@ -9,7 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        xs: "380px"
+        xs: "380px",
+        "md-lg": "860px",
       },
       colors: {
         dark: "#96B6C5",
