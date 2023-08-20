@@ -50,9 +50,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-lightest min-h-screen`}>
+      <body className={`${inter.className} bg-background flex flex-col min-h-screen absolute inset-0 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_2px)] [background-size:16px_16px]`}>
         <NavBar />
         {children}
+        <footer className='flex justify-between px-4 py-2 text-sm shrink-0'>
+          <p>SHS Web Dev Club | © 2023</p> <p>Created by cqb13</p>
+        </footer>
         <Suspense fallback={null}>
           <NavigationEvents />
         </Suspense>
