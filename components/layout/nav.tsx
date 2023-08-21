@@ -9,13 +9,16 @@ import useScroll from "@hooks/useScroll";
 import { routes } from "@lib/routes";
 import { useState } from "react";
 
+import { useAuthContext } from "@/context/authContext";
+
 export default function NavBar() {
   const router = useRouter();
   const pathname = usePathname();
+  const { user } = useAuthContext() as { user: any };
   const [accountStatus, setAccountStatus] = useState(false);
 
   const accountStatusToggle = () => {
-    if (auth.currentUser) {
+    if (user === null) {
       googleSignOut();
       setAccountStatus(false);
       if (pathname === "/account") {
