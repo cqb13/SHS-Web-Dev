@@ -97,7 +97,7 @@ export default function NavBar() {
           onClick={accountStatusToggle}
           className='py-1 px-2 rounded-md text-lg hover:bg-light transition-all ease-in-out'
         >
-          {accountStatus ? "Sign Out" : "Sign In"}
+          {user ? "Sign Out" : "Sign In"}
         </button>
       </div>
     </nav>
