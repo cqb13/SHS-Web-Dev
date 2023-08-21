@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { collection, getDocs, setDoc, getDoc, doc } from "firebase/firestore";
 import userIsAdmin from "@/utils/firebase/userIsAdmin";
@@ -12,8 +12,11 @@ import { auth, db } from "@/lib/firebase";
 import User from "@/types/user";
 import Image from "next/image";
 
+import { useAuthContext } from "@/context/authContext";
+
 export default function Account() {
   const router = useRouter();
+  const { user } = useAuthContext() as { user: any };
   const [userList, setUserList] = useState<User[]>([]);
   const [filteredUserList, setFilteredUserList] = useState<User[]>(userList);
 
@@ -36,8 +39,7 @@ export default function Account() {
   const [popupOnCancel, setPopupOnCancel] = useState(() => {});
 
   useEffect(() => {
-    if (!auth.currentUser) {
-      console.log("No user");
+    if (user == null) {
       router.push("/");
     } else {
       userIsAdmin(auth.currentUser).then((isAdmin) => {
@@ -82,7 +84,7 @@ export default function Account() {
       setPfp(auth.currentUser?.photoURL || "");
       setName(auth.currentUser?.displayName || "");
     }
-  }, [router]);
+  }, [user, router]);
 
   const updateUsername = (e: any) => setUsername(e.target.value);
 
