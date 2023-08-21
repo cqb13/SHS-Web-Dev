@@ -8,7 +8,7 @@ type MemberCardProps = {
 
 export default function MemberCard({ name, icon, github }: MemberCardProps) {
   return (
-    <div className="bg-dark p-4 flex flex-col gap-2 rounded-lg">
+    <div className="bg-dark p-4 flex flex-col gap-2 rounded-lg items-center">
       <Image
         className="bg-highlight rounded-full"
         src={icon}

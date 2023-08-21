@@ -27,7 +27,7 @@ export default function ErrorPopup({
     <section
       className={`${opened
         ? ""
-        : "absolute bottom-2 left-2"} p-4 w-80 bg-red-500 rounded-md`}
+        : "fixed bottom-2 left-2"} p-4 w-80 bg-red-500 rounded-md`}
     >
       <div className="flex items-center justify-between">
         <h1 className="text-white">

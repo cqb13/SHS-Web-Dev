@@ -98,6 +98,7 @@ export default function Account() {
         },
         { merge: true }
       );
+      return;
     }
 
     fetch(`https://api.github.com/users/${username}`).then((res) => {
