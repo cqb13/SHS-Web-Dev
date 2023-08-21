@@ -5,15 +5,7 @@ import userIsAdmin from "@/utils/firebase/userIsAdmin";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { auth, db } from "@/lib/firebase";
-
-interface User {
-  uid: string;
-  name: string;
-  email: string;
-  member: boolean;
-  isOwner: boolean;
-  isAdmin: boolean;
-}
+import User from "@/types/user"; 
 
 export default function AdminPage() {
   const router = useRouter();

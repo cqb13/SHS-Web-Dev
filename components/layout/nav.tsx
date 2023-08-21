@@ -2,6 +2,7 @@ import { collection, getDoc, setDoc, doc } from "firebase/firestore";
 import googleSignOut from "@/utils/firebase/googleSignOut";
 import { useRouter, usePathname } from "next/navigation";
 import googleSignIn from "@/utils/firebase/googleSignIn";
+import userIsMember from "@/utils/firebase/userIsMember";
 import userIsAdmin from "@/utils/firebase/userIsAdmin";
 import { auth, db } from "@lib/firebase";
 import useScroll from "@hooks/useScroll";
@@ -13,12 +14,14 @@ export default function NavBar() {
   const pathname = usePathname();
   const [accountStatus, setAccountStatus] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isMember, setIsMember] = useState(false);
 
   const accountStatusToggle = () => {
     if (auth.currentUser) {
       googleSignOut();
       setAccountStatus(false);
       setIsAdmin(false);
+      setIsMember(false);
     } else {
       googleSignIn().then(user => {
         if (!auth.currentUser) return;
@@ -43,6 +46,9 @@ export default function NavBar() {
             } else {
               userIsAdmin(user).then(isAdmin => {
                 setIsAdmin(isAdmin);
+              });
+              userIsMember(user).then(isMember => {
+                setIsMember(isMember);
               });
             }
             setAccountStatus(true);
@@ -73,6 +79,17 @@ export default function NavBar() {
             {name}
           </button>
         )}
+        {isMember
+          ? <button
+              type="button"
+              onClick={() => router.push("/member")}
+              className={`${pathname === "/member"
+                ? "bg-light"
+                : ""} py-1 px-2 rounded-md text-lg hover:bg-light transition-all ease-in-out`}
+            >
+              Member Panel
+            </button>
+          : null}
         {isAdmin
           ? <button
               type="button"

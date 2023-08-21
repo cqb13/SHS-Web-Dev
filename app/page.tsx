@@ -6,7 +6,7 @@ export default function Home() {
       <section className="flex-grow flex px-4 py-2">
         <section className="flex-1 flex flex-col items-center justify-center">
           <h1 className="text-center text-7xl font-bold mt-4">SHS Web Dev Club</h1>
-          <p className="w-3/5 text-center text-xl max-lg:w-full">Join us at our bi-monthly meetings on Wednesdays in room (idk) to learn and practice web development.</p>
+          <p className="w-3/5 text-center text-xl max-lg:w-full">Join us at our bi-monthly meetings on Wednesdays in room 2411 to learn and practice web development.</p>
           <Link href="/about" className="mt-10 px-32 py-10 text-2xl bg-dark text-center font-semibold rounded-md hover:bg-light hover:rounded-xl transition-all ease-in-out active:tracking-wider max-md-lg:px-24">
             Learn More
           </Link>
