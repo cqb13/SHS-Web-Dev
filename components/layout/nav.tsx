@@ -82,7 +82,7 @@ export default function NavBar() {
             {name}
           </button>
         ))}
-        {accountStatus ? (
+        {user ? (
           <button
             type='button'
             onClick={() => router.push("/account")}

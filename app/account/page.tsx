@@ -1,18 +1,17 @@
-'use client'
+"use client";
 
 import { collection, getDocs, setDoc, getDoc, doc } from "firebase/firestore";
-import userIsAdmin from "@/utils/firebase/userIsAdmin";
-import userIsMember from "@/utils/firebase/userIsMember";
 import deleteAccount from "@/utils/firebase/deleteAccount";
 import ActionPopup from "@/components/general/actionPopup";
+import userIsMember from "@/utils/firebase/userIsMember";
 import ErrorPopup from "@/components/general/errorPopup";
+import userIsAdmin from "@/utils/firebase/userIsAdmin";
+import { useAuthContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { auth, db } from "@/lib/firebase";
 import User from "@/types/user";
 import Image from "next/image";
-
-import { useAuthContext } from "@/context/authContext";
 
 export default function Account() {
   const router = useRouter();
@@ -211,7 +210,7 @@ export default function Account() {
         className='rounded-full mt-2'
       />
       <h1 className='text-3xl px-4 py-2 text-center'>
-        {`${isMember? "Welcome to the club, " : "Hello, "} ${name}!`}
+        {`${isMember ? "Welcome to the club, " : "Hello, "} ${name}!`}
       </h1>
       <div className='w-4/5 flex gap-4 max-md-lg:flex-col'>
         <section className='flex flex-col gap-2 bg-light px-4 py-2 rounded-lg flex-1'>
