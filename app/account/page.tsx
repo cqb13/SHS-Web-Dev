@@ -105,6 +105,7 @@ export default function Account() {
       if (res.status === 404) {
         setError(true);
         setErrorMessage("Invalid Github username");
+        setUsername("");
       } else {
         const userRef = doc(
           collection(db, "users"),
@@ -206,10 +207,10 @@ export default function Account() {
         height={400}
         className='rounded-full mt-2'
       />
-      <h1 className='text-3xl px-4 py-2'>
-        Welcome to SHS Web Dev Club, {name}
+      <h1 className='text-3xl px-4 py-2 text-center'>
+        {`${isMember? "Welcome to the club, " : "Hello, "} ${name}!`}
       </h1>
-      <div className='w-4/5 flex gap-4'>
+      <div className='w-4/5 flex gap-4 max-md-lg:flex-col'>
         <section className='flex flex-col gap-2 bg-light px-4 py-2 rounded-lg flex-1'>
           {/*TODO: add github auth to do this*/}
           {isMember || isAdmin ? (
@@ -278,7 +279,7 @@ export default function Account() {
         ) : null}
       </div>
       {isAdmin ? (
-        <section className='w-3/5 rounded-md px-4 py-2 bg-light h-96'>
+        <section className='w-4/5 rounded-md px-4 py-2 bg-light h-96'>
           <h1 className='text-center text-lg'>User Management</h1>
           <input
             type='text'
