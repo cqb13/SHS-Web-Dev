@@ -4,7 +4,7 @@ interface ActionPopup {
   inputVisible: boolean;
   expectedInput: string;
   confirmText: string;
-  onConfirm: void;
+  onConfirm: () => void;
   cancelText: string;
   onCancel: () => void;
 }

@@ -1,3 +1,5 @@
+'use client'
+
 import { collection, getDoc, setDoc, doc } from "firebase/firestore";
 import googleSignOut from "@/utils/firebase/googleSignOut";
 import { useRouter, usePathname } from "next/navigation";

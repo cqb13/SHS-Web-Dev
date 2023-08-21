@@ -37,6 +37,7 @@ export default function Account() {
 
   useEffect(() => {
     if (!auth.currentUser) {
+      console.log("No user");
       router.push("/");
     } else {
       userIsAdmin(auth.currentUser).then((isAdmin) => {
@@ -314,7 +315,7 @@ export default function Account() {
           expectedInput={popupExpectedInput}
           confirmText={popupConfirmText}
           cancelText={popupCancelText}
-          onConfirm={popupOnConfirm}
+          onConfirm={() => setPopupShown(false)}
           onCancel={() => setPopupShown(false)}
         />
       ) : null}
