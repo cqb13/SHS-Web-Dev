@@ -18,7 +18,7 @@ export default function NavBar() {
   const [accountStatus, setAccountStatus] = useState(false);
 
   const accountStatusToggle = () => {
-    if (user === null) {
+    if (user) {
       googleSignOut();
       setAccountStatus(false);
       if (pathname === "/account") {
