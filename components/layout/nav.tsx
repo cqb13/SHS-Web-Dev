@@ -42,7 +42,6 @@ export default function NavBar() {
               });
             } else {
               userIsAdmin(user).then(isAdmin => {
-                console.log(isAdmin);
                 setIsAdmin(isAdmin);
               });
             }
