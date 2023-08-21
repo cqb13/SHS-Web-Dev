@@ -2,7 +2,7 @@ interface User {
   photoURL: string;
   isOwner: boolean;
   isAdmin: boolean;
-  member: boolean;
+  isMember: boolean;
   github: string;
   email: string;
   name: string;
