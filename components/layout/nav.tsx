@@ -1,12 +1,59 @@
-"use-client";
-
+import { collection, getDoc, setDoc, doc } from "firebase/firestore";
+import googleSignOut from "@/utils/firebase/googleSignOut";
 import { useRouter, usePathname } from "next/navigation";
+import googleSignIn from "@/utils/firebase/googleSignIn";
+import userIsAdmin from "@/utils/firebase/userIsAdmin";
+import { auth, db } from "@lib/firebase";
 import useScroll from "@hooks/useScroll";
 import { routes } from "@lib/routes";
+import { useState } from "react";
 
 export default function NavBar() {
   const router = useRouter();
   const pathname = usePathname();
+  const [accountStatus, setAccountStatus] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const accountStatusToggle = () => {
+    if (auth.currentUser) {
+      googleSignOut();
+      setAccountStatus(false);
+      setIsAdmin(false);
+    } else {
+      googleSignIn().then(user => {
+        if (!auth.currentUser) return;
+
+        const users = collection(db, "users");
+        const userRef = doc(users, user.uid);
+
+        getDoc(userRef)
+          .then(userDoc => {
+            if (!userDoc.exists()) {
+              setDoc(userRef, {
+                name: user.displayName,
+                email: user.email,
+                photoURL: user.photoURL,
+                uid: user.uid,
+                dateCreated: Date.now(),
+                lastLogin: Date.now(),
+                isAdmin: false,
+                isMember: false,
+                github: ""
+              });
+            } else {
+              userIsAdmin(user).then(isAdmin => {
+                console.log(isAdmin);
+                setIsAdmin(isAdmin);
+              });
+            }
+            setAccountStatus(true);
+          })
+          .catch(error => {
+            console.error("Error:", error);
+          });
+      });
+    }
+  };
 
   return (
     <nav
@@ -20,11 +67,30 @@ export default function NavBar() {
             type="button"
             key={name}
             onClick={() => router.push(path)}
-            className={`${pathname === path ? "bg-light" : ""} py-1 px-2 rounded-md text-lg`}
+            className={`${pathname === path
+              ? "bg-light"
+              : ""} py-1 px-2 rounded-md text-lg hover:bg-light transition-all ease-in-out`}
           >
             {name}
           </button>
         )}
+        {isAdmin
+          ? <button
+              type="button"
+              onClick={() => router.push("/admin")}
+              className={`${pathname === "/admin"
+                ? "bg-light"
+                : ""} py-1 px-2 rounded-md text-lg hover:bg-light transition-all ease-in-out`}
+            >
+              Admin Panel
+            </button>
+          : null}
+        <button
+          onClick={accountStatusToggle}
+          className="py-1 px-2 rounded-md text-lg hover:bg-light transition-all ease-in-out"
+        >
+          {accountStatus ? "Sign Out" : "Sign In"}
+        </button>
       </div>
     </nav>
   );

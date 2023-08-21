@@ -1,11 +1,11 @@
 'use client'
 
-import { NavigationEvents } from '@/lib/navEvents'
-import { Inter } from 'next/font/google'
-import NavBar from '@/components/layout/nav'
-import type { Metadata } from 'next'
-import { Suspense } from 'react'
-import './globals.css'
+import { NavigationEvents } from '@/lib/navEvents';
+import NavBar from '@/components/layout/nav';
+import { Inter } from 'next/font/google';
+import type { Metadata } from 'next';
+import { Suspense } from 'react';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] })
 
