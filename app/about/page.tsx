@@ -22,9 +22,6 @@ export default function About() {
   useEffect(() => {
     const data: MemberCardProps[] = [];
     members.forEach((member) => {
-      if (member == "") {
-        return;
-      }
       data.push({
         name: member,
         icon: `https://github.com/${member}.png?size=96`,
@@ -40,6 +37,10 @@ export default function About() {
       .then((querySnapshot) => {
         const data: any = [];
         querySnapshot.forEach((doc) => {
+          if (doc.data().github == "" || doc.data().isMember == false) {
+            return;
+          }
+
           data.push(doc.data().github);
         });
         setMembers(data);

@@ -60,6 +60,18 @@ export default function Account() {
         }
       });
 
+      const userRef = doc(db, "users", auth.currentUser?.uid || "");
+      getDoc(userRef)
+        .then((docSnap) => {
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            setUsername(data?.github || "");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+
       userIsMember(auth.currentUser).then((isMember) => {
         if (isMember) {
           setIsMember(true);
@@ -210,7 +222,6 @@ export default function Account() {
       </h1>
       <div className='w-4/5 flex gap-4 max-md-lg:flex-col'>
         <section className='flex flex-col gap-2 bg-light px-4 py-2 rounded-lg flex-1'>
-          {/*TODO: add github auth to do this*/}
           {isMember || isAdmin ? (
             <>
               <p>
