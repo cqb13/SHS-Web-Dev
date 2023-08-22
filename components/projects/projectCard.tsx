@@ -5,6 +5,7 @@ type Project = {
   homepage?: string;
   stars: number;
   topics: string[];
+  owner?: string
 };
 
 export default function ProjectCard({
@@ -13,10 +14,11 @@ export default function ProjectCard({
   url,
   homepage,
   stars,
-  topics
+  topics,
+  owner
 }: Project) {
   return (
-    <section className='flex flex-col bg-light rounded-md p-4 h-56 justify-between max-xs:h-72'>
+    <section className='flex flex-col bg-light rounded-md p-4 h-60 justify-between max-xs:h-72'>
       <div>
       <div className="flex justify-between items-center">
         <h2 className="text-xl">{name}</h2>
@@ -36,8 +38,9 @@ export default function ProjectCard({
         </div>
       </div>
       <p>{description}</p>
+      {owner ? <span>by: {owner}</span> : null}
       </div>
-      <div className="flex gap-2 py-4 flex-wrap">
+      <div className="flex gap-2 py-4 flex-wrap h-10 overflow-y-scroll">
         {topics.map((topic) => (
           <span key={topic} className="bg-highlight rounded-md px-2 ">{topic}</span>
         ))}
