@@ -19,9 +19,6 @@ export default function Account() {
   const [userList, setUserList] = useState<User[]>([]);
   const [filteredUserList, setFilteredUserList] = useState<User[]>(userList);
 
-  const [currentRepo, setCurrentRepo] = useState<string>("");
-  const [repoList, setRepoList] = useState<string[]>([]);
-
   const [name, setName] = useState<string>("");
   const [username, setUsername] = useState("");
   const [pfp, setPfp] = useState<string>("");
@@ -75,30 +72,6 @@ export default function Account() {
         }
       });
 
-      const projectRef = doc(collection(db, "requests"), "all");
-      getDoc(projectRef).then((docSnap) => {
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          if (data) {
-            setRepoList(data.projects);
-          }
-        }
-      });
-
-      const userRef = doc(collection(db, "users"), auth.currentUser?.uid || "");
-      getDoc(userRef)
-        .then((docSnap) => {
-          if (docSnap.exists()) {
-            const data = docSnap.data();
-            if (data) {
-              setUsername(data.github || "");
-            }
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-
       setPfp(auth.currentUser?.photoURL || "");
       setName(auth.currentUser?.displayName || "");
     }
@@ -107,18 +80,6 @@ export default function Account() {
   useEffect(() => {
     setFilteredUserList(userList);
   }, [userList]);
-
-  useEffect(() => {
-    if (repoList.length === 0) return;
-    const projectRef = doc(collection(db, "projects"), "all");
-    setDoc(
-      projectRef,
-      {
-        requests: repoList
-      },
-      { merge: true }
-    );
-  }, [repoList]);
 
   const updateUsername = (e: any) => setUsername(e.target.value);
 
@@ -235,56 +196,6 @@ export default function Account() {
     router.push("/");
   };
 
-  const handleCurrentRepoChange = (e: any) => setCurrentRepo(e.target.value);
-
-  const addRepo = () => {
-    setError(false);
-    setErrorMessage("");
-    if (currentRepo === "") return;
-    if (repoList.includes(`${username}/${currentRepo}`)) return;
-    repoExistsOnUser().then((exists) => {
-      if (exists) {
-        setRepoList([...repoList, `${username}/${currentRepo}`]);
-      } else {
-        setError(true);
-        setErrorMessage("Repo does not exist on your Github");
-      }
-    });
-    setCurrentRepo("");
-  };
-
-  const repoExistsOnUser = async () => {
-    const res = await fetch(`https://api.github.com/users/${username}/repos`);
-    if (res.status === 404) {
-      setError(true);
-      setErrorMessage("Cant validate repo");
-      setUsername("");
-      return false;
-    } else {
-      const data = await res.json();
-      for (const repo of data) {
-        if (
-          repo.name.toLowerCase() ===
-          currentRepo.toLowerCase().replace(" ", "-")
-        ) {
-          if (repo.fork === true) {
-            setError(true);
-            setErrorMessage("Repo is a fork");
-            return false;
-          } else {
-            return true;
-          }
-        }
-      }
-      return false;
-    }
-  };
-
-  const removeRepo = (repo: string) => {
-    const newRepoList = repoList.filter((r) => r !== repo);
-    setRepoList(newRepoList);
-  };
-
   return (
     <main className='flex flex-col flex-1 px-4 py-2 items-center gap-4'>
       <Image
@@ -362,117 +273,6 @@ export default function Account() {
             >
               JavaScript
             </a>
-          </section>
-        ) : null}
-      </div>
-      <div className='w-4/5 flex gap-2'>
-        {isMember || isAdmin ? (
-          <section className='w-2/5 rounded-md px-4 py-2 bg-light flex-1'>
-            <h1 className='text-center text-lg'>Feature Your Project</h1>
-            <div className='flex flex-col gap-2 mb-2 max-h-56 overflow-y-scroll'>
-              {repoList.map((repo) => (
-                <div key={repo} className='flex gap-2'>
-                  <p className='w-full bg-highlight p-2 rounded-lg'>{repo}</p>
-                  <button
-                    onClick={() => removeRepo(repo)}
-                    className='bg-highlight p-2 rounded-lg hover:bg-opacity-90'
-                  >
-                    <svg
-                      fill='#000000'
-                      width='20px'
-                      height='20px'
-                      viewBox='0 0 24 24'
-                      id='minus'
-                      data-name='Flat Color'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path
-                        id='primary'
-                        d='M19,13H5a1,1,0,0,1,0-2H19a1,1,0,0,1,0,2Z'
-                      ></path>
-                    </svg>
-                  </button>
-                </div>
-              ))}
-            </div>
-            <div className='flex gap-2'>
-              <input
-                type='text'
-                placeholder='Repository Name'
-                onChange={handleCurrentRepoChange}
-                value={currentRepo}
-                className='bg-highlight p-2 rounded-lg w-full placeholder:text-dark focus:outline-none'
-              />
-              <button
-                className='bg-highlight p-2 rounded-lg hover:bg-opacity-90'
-                onClick={addRepo}
-              >
-                <svg
-                  fill='#000000'
-                  width='20px'
-                  height='20px'
-                  viewBox='0 0 24 24'
-                  id='plus'
-                  data-name='Flat Color'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    id='primary'
-                    d='M12,20a1,1,0,0,1-1-1V13H5a1,1,0,0,1,0-2h6V5a1,1,0,0,1,2,0v6h6a1,1,0,0,1,0,2H13v6A1,1,0,0,1,12,20Z'
-                  ></path>
-                </svg>
-              </button>
-            </div>
-          </section>
-        ) : null}
-        {isAdmin ? (
-          <section className='w-2/5 rounded-md px-4 py-2 bg-light'>
-            <h1 className='text-center text-lg'>Featured Project Requests</h1>
-            <div className='flex flex-col gap-2 mb-2 max-h-56 overflow-y-scroll'>
-              {repoList.map((repo) => (
-                <div key={repo} className='flex gap-2'>
-                  <p className='w-full bg-highlight p-2 rounded-lg'>{repo}</p>
-                  <button
-                    onClick={() => removeRepo(repo)}
-                    className='bg-highlight p-2 rounded-lg hover:bg-opacity-90'
-                  >
-                    <svg
-                      fill='#000000'
-                      width='20px'
-                      height='20px'
-                      viewBox='0 0 24 24'
-                      id='minus'
-                      data-name='Flat Color'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path
-                        id='primary'
-                        d='M19,13H5a1,1,0,0,1,0-2H19a1,1,0,0,1,0,2Z'
-                      ></path>
-                    </svg>
-                  </button>
-                  <button
-                    onClick={() => removeRepo(repo)}
-                    className='bg-highlight p-2 rounded-lg hover:bg-opacity-90'
-                  >
-                    <svg
-                      fill='#000000'
-                      width='20px'
-                      height='20px'
-                      viewBox='0 0 24 24'
-                      id='plus'
-                      data-name='Flat Color'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path
-                        id='primary'
-                        d='M12,20a1,1,0,0,1-1-1V13H5a1,1,0,0,1,0-2h6V5a1,1,0,0,1,2,0v6h6a1,1,0,0,1,0,2H13v6A1,1,0,0,1,12,20Z'
-                      ></path>
-                    </svg>
-                  </button>
-                </div>
-              ))}
-            </div>
           </section>
         ) : null}
       </div>
