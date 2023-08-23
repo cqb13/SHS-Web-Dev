@@ -2,6 +2,7 @@
 
 import MemberCard from "@/components/about/memberCard";
 import { collection, getDocs } from "@firebase/firestore";
+import ActivityCard from "@/components/about/activityCard";
 import { useEffect, useState } from "react";
 import { db } from "@/lib/firebase";
 
@@ -50,25 +51,31 @@ export default function About() {
       });
   };
 
+  //TODO: make this look good later
   return (
-    <main className='flex flex-col flex-1 py-2 px-4 items-center'>
+    <main className='flex flex-col flex-1 py-2 px-4 gap-2 items-center'>
       <h1 className='text-3xl font-semibold text-center'>
         The SHS Web Dev Club
       </h1>
-      <section className="flex w-4/5 gap-2 h-32 mt-4">
-        <div className="bg-light py-2 px-4 rounded-lg">
-          <h2 className="text-xl font-semibold mb-1">Goals & Objectives</h2>
-          <p>We aim to provide you with hands-on experience in web development.</p>
+      <section className='flex w-4/5 gap-2 mt-2 md-lg:h-32 max-md-lg:flex-col'>
+        <div className='bg-light py-2 px-4 rounded-lg'>
+          <h2 className='text-xl font-semibold mb-1'>Goals & Objectives</h2>
+          <p className='text-lg'>
+            We aim to provide you with hands-on experience in web development.
+          </p>
         </div>
-        <div className="bg-light py-2 px-4 rounded-lg">
-          <h2 className="text-xl font-semibold mb-1">Meetings</h2>
-          <p>We meet twice a month after school, on Wednesdays, in room 2411. Our meetings last from 30minutes to an hour.</p>
+        <div className='bg-light py-2 px-4 rounded-lg'>
+          <h2 className='text-xl font-semibold mb-1'>Meetings</h2>
+          <p className='text-lg'>
+            We meet twice a month after school, on Wednesdays, in room 2411. Our
+            meetings last from 30minutes to an hour.
+          </p>
         </div>
       </section>
-      <section className="flex w-4/5 gap-2 mt-2">
-        <div className="bg-light py-2 px-4 rounded-lg flex-1">
-          <h2 className="text-xl font-semibold mb-1">Technologies</h2>
-          <ul className="px-2">
+      <section className='flex w-4/5 gap-2 max-sm:flex-col'>
+        <div className='bg-light py-2 px-4 rounded-lg flex-1'>
+          <h2 className='text-xl font-semibold mb-1'>Technologies</h2>
+          <ul className='px-2 text-lg'>
             <li>HTML</li>
             <li>CSS</li>
             <li>JavaScript & TypeScript</li>
@@ -78,26 +85,45 @@ export default function About() {
             <li>More...</li>
           </ul>
         </div>
-        <div className="bg-light py-2 px-4 rounded-lg flex-1">
-          <h2 className="text-xl font-semibold mb-1">Activities</h2>
-          <ul className="px-2">
+        <div className='bg-light py-2 px-4 rounded-lg flex-1'>
+          <h2 className='text-xl font-semibold mb-1'>Activities</h2>
+          <ul className='px-2 text-lg'>
             <li>Develope Websites</li>
             <li>Partake in Hackathons</li>
             <li>Learn Web Hosting</li>
             <li>More...</li>
           </ul>
         </div>
-        <div className="bg-light py-2 px-4 rounded-lg flex-1">
-          <h2 className="text-xl font-semibold mb-1">Activities</h2>
-
+        <div className='bg-light py-2 px-4 rounded-lg flex-1'>
+          <h2 className='text-xl font-semibold mb-1'>Links</h2>
+          <ul className='px-2 text-lg'>
+            <li className="bg-highlight p-2 rounded-md hover:rounded-lg w-full focus:outline-none hover:opacity-90 transition-all ease-in-out"><a href="https://github.com/Website-Club" target="_blank">Our Github</a></li>
+            <li className="bg-highlight p-2 mt-2 rounded-md hover:rounded-lg w-full focus:outline-none hover:opacity-90 transition-all ease-in-out"><a href="https://www.instagram.com/webapp_club/" target="_blank">Our Instagram</a></li>
+          </ul>
         </div>
       </section>
       <h1 className='text-3xl m-2 w-4/5 pl-4'>You Opportunities</h1>
-      <section className="bg-light rounded-lg w-4/5 h-32 mt-2 py-2 px-4">
-        <h2>If you can code</h2>
+      <section className='bg-light rounded-lg w-4/5 py-2 px-4'>
+        <h2 className='text-xl font-semibold mb-1'>If you can code</h2>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+          <ActivityCard content='Work on group projects to build mobile and web apps.' />
+          <ActivityCard content='Participate in coding challenges.' />
+          <ActivityCard content='Help guide fellow members in their learning.' />
+          <ActivityCard content='Participate in / Organize hackathons' />
+          <ActivityCard content='Participate in code review sessions to give feedback on the code of other members.' />
+          <ActivityCard content='' />
+        </div>
       </section>
-      <section className="bg-light rounded-lg w-4/5 h-32 mt-2 py-2 px-4">
-        <h2>If you can&apos;t code</h2>
+      <section className='bg-light rounded-lg w-4/5 py-2 px-4'>
+        <h2 className='text-xl font-semibold mb-1'>If you can&apos;t code</h2>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+          <ActivityCard content='Learn to code!' links={[["Code.Org", "https://code.org/"], ["Scratch", "https://scratch.mit.edu/"]]} />
+          <ActivityCard content='Participate in testing sessions to provide feedback on websites and apps created by members.' />
+          <ActivityCard content='Help create content of websites and apps,such as designing graphics.' />
+          <ActivityCard content='Participate in code review sessions to give feedback on the code of other members.' />
+          <ActivityCard content='Help with project management tasks, such as organizing schedules,coordinating team members, and tracking progress.' />
+          <ActivityCard content='Create app ideas for members to develop.' />
+        </div>
       </section>
       <section className='flex flex-col items-center mt-2'>
         <h1 className='text-3xl'>Members</h1>
