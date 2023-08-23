@@ -97,8 +97,16 @@ export default function About() {
         <div className='bg-light py-2 px-4 rounded-lg flex-1'>
           <h2 className='text-xl font-semibold mb-1'>Links</h2>
           <ul className='px-2 text-lg'>
-            <li className="bg-highlight p-2 rounded-md hover:rounded-lg w-full focus:outline-none hover:opacity-90 transition-all ease-in-out"><a href="https://github.com/Website-Club" target="_blank">Our Github</a></li>
-            <li className="bg-highlight p-2 mt-2 rounded-md hover:rounded-lg w-full focus:outline-none hover:opacity-90 transition-all ease-in-out"><a href="https://www.instagram.com/webapp_club/" target="_blank">Our Instagram</a></li>
+            <li className='bg-highlight p-2 rounded-md hover:rounded-lg w-full focus:outline-none hover:opacity-90 transition-all ease-in-out'>
+              <a href='https://github.com/Website-Club' target='_blank'>
+                Our Github
+              </a>
+            </li>
+            <li className='bg-highlight p-2 mt-2 rounded-md hover:rounded-lg w-full focus:outline-none hover:opacity-90 transition-all ease-in-out'>
+              <a href='https://www.instagram.com/webapp_club/' target='_blank'>
+                Our Instagram
+              </a>
+            </li>
           </ul>
         </div>
       </section>
@@ -117,7 +125,13 @@ export default function About() {
       <section className='bg-light rounded-lg w-4/5 py-2 px-4 max-sm:w-11/12'>
         <h2 className='text-xl font-semibold mb-1'>If you can&apos;t code</h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-          <ActivityCard content='Learn to code!' links={[["Code.Org", "https://code.org/"], ["Scratch", "https://scratch.mit.edu/"]]} />
+          <ActivityCard
+            content='Learn to code!'
+            links={[
+              ["Code.Org", "https://code.org/"],
+              ["Scratch", "https://scratch.mit.edu/"]
+            ]}
+          />
           <ActivityCard content='Participate in testing sessions to provide feedback on websites and apps created by members.' />
           <ActivityCard content='Help create content for websites and apps, such as designing graphics.' />
           <ActivityCard content='Participate in code review sessions to give feedback on the code of other members.' />

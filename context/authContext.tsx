@@ -1,34 +1,42 @@
-'use client'
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
-import { firebase_app } from '@lib/firebase';
+"use client";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode
+} from "react";
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import { firebase_app } from "@lib/firebase";
 
-const auth = getAuth( firebase_app );
+const auth = getAuth(firebase_app);
 
-export const AuthContext = createContext( {} );
+export const AuthContext = createContext({});
 
-export const useAuthContext = () => useContext( AuthContext );
+export const useAuthContext = () => useContext(AuthContext);
 
 interface AuthContextProviderProps {
   children: ReactNode;
 }
 
-export function AuthContextProvider( { children }: AuthContextProviderProps ): JSX.Element {
-  const [ user, setUser ] = useState<User | null>( null );
-  const [ loading, setLoading ] = useState( true );
+export function AuthContextProvider({
+  children
+}: AuthContextProviderProps): JSX.Element {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  useEffect( () => {
-    const unsubscribe = onAuthStateChanged( auth, ( user ) => {
-      if ( user ) {
-        setUser( user );
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
       } else {
-        setUser( null );
+        setUser(null);
       }
-      setLoading( false );
-    } );
+      setLoading(false);
+    });
 
     return () => unsubscribe();
-  }, [] );
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user }}>

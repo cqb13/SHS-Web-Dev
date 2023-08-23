@@ -1,55 +1,62 @@
-import { NavigationEvents } from '@/lib/navEvents';
-import { AuthContextProvider } from '@/context/authContext';
-import NavBar from '@/components/layout/nav';
-import { Inter } from 'next/font/google';
-import type { Metadata } from 'next';
-import { Suspense } from 'react';
-import './globals.css';
+import { NavigationEvents } from "@/lib/navEvents";
+import { AuthContextProvider } from "@/context/authContext";
+import NavBar from "@/components/layout/nav";
+import { Inter } from "next/font/google";
+import type { Metadata } from "next";
+import { Suspense } from "react";
+import "./globals.css";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'SHS Web Dev Club',
-  description: 'A safe space to learn and practice web development at SHS.',
-  keywords: ['web', 'development', 'club', 'shs', 'sharon high school', 'sharon', 'high school', 'sharon ma', 'cqb13'],
-  generator: 'Next.js',
-  applicationName: 'SHS Web Dev Club',
-  referrer: 'origin-when-cross-origin',
-  authors: [{ name: 'cqb13', url: 'https://cqb13.dev' }],
-  colorScheme: 'dark',
-  creator: 'cqb13',
-  publisher: 'SHS Web Dev Club',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
+  title: "SHS Web Dev Club",
+  description: "A safe space to learn and practice web development at SHS.",
+  keywords: [
+    "web",
+    "development",
+    "club",
+    "shs",
+    "sharon high school",
+    "sharon",
+    "high school",
+    "sharon ma",
+    "cqb13"
+  ],
+  generator: "Next.js",
+  applicationName: "SHS Web Dev Club",
+  referrer: "origin-when-cross-origin",
+  authors: [{ name: "cqb13", url: "https://cqb13.dev" }],
+  colorScheme: "dark",
+  creator: "cqb13",
+  publisher: "SHS Web Dev Club",
   openGraph: {
-    title: 'SHS Web Dev Club',
-    description: 'A safe space to learn and practice web development at SHS.',
-    url: 'https://cqb13.dev',
-    siteName: 'SHS Web Dev Club',
+    title: "SHS Web Dev Club",
+    description: "A safe space to learn and practice web development at SHS.",
+    url: "https://shsdevs.vercel.app",
+    siteName: "SHS Web Dev Club",
     images: [
       {
-        url: 'https://cqb13.dev/icon.png',
+        url: "https://shsdevs.vercel.app/icon.png",
         width: 600,
         height: 600,
-        alt: 'SHS Web Dev Club Logo',
-      },
+        alt: "SHS Web Dev Club Logo"
+      }
     ],
-    locale: 'en_US',
-    type: 'website',
-  },
-}
+    locale: "en_US",
+    type: "website"
+  }
+};
 
 export default function RootLayout({
-  children,
+  children
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} text-black bg-background flex flex-col min-h-screen absolute inset-0 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_2px)] [background-size:16px_16px]`}>
+    <html lang='en'>
+      <body
+        className={`${inter.className} text-black bg-background flex flex-col min-h-screen absolute inset-0 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_2px)] [background-size:16px_16px]`}
+      >
         <AuthContextProvider>
           <NavBar />
           {children}
@@ -62,5 +69,5 @@ export default function RootLayout({
         </Suspense>
       </body>
     </html>
-  )
+  );
 }

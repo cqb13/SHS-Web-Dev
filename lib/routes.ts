@@ -1,6 +1,6 @@
 export const routes = [
   ["Home", "/"],
   ["About", "/about"],
-  ["Projects", "/projects"],
+  ["Projects", "/projects"]
   //["Services", "/services"]
 ];
