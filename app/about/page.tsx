@@ -51,11 +51,57 @@ export default function About() {
   };
 
   return (
-    <main className='flex flex-col flex-1'>
-      <section className='flex flex-col items-center'>
-        <h1 className='text-5xl font-medium'>Members</h1>
-        <hr className='w-4/5' />
-        <div className='flex gap-4 m-4'>
+    <main className='flex flex-col flex-1 py-2 px-4 items-center'>
+      <h1 className='text-3xl font-semibold text-center'>
+        The SHS Web Dev Club
+      </h1>
+      <section className="flex w-4/5 gap-2 h-32 mt-4">
+        <div className="bg-light py-2 px-4 rounded-lg">
+          <h2 className="text-xl font-semibold mb-1">Goals & Objectives</h2>
+          <p>We aim to provide you with hands-on experience in web development.</p>
+        </div>
+        <div className="bg-light py-2 px-4 rounded-lg">
+          <h2 className="text-xl font-semibold mb-1">Meetings</h2>
+          <p>We meet twice a month after school, on Wednesdays, in room 2411. Our meetings last from 30minutes to an hour.</p>
+        </div>
+      </section>
+      <section className="flex w-4/5 gap-2 mt-2">
+        <div className="bg-light py-2 px-4 rounded-lg flex-1">
+          <h2 className="text-xl font-semibold mb-1">Technologies</h2>
+          <ul className="px-2">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript & TypeScript</li>
+            <li>React & NextJS</li>
+            <li>VueJS</li>
+            <li>Git</li>
+            <li>More...</li>
+          </ul>
+        </div>
+        <div className="bg-light py-2 px-4 rounded-lg flex-1">
+          <h2 className="text-xl font-semibold mb-1">Activities</h2>
+          <ul className="px-2">
+            <li>Develope Websites</li>
+            <li>Partake in Hackathons</li>
+            <li>Learn Web Hosting</li>
+            <li>More...</li>
+          </ul>
+        </div>
+        <div className="bg-light py-2 px-4 rounded-lg flex-1">
+          <h2 className="text-xl font-semibold mb-1">Activities</h2>
+
+        </div>
+      </section>
+      <h1 className='text-3xl m-2 w-4/5 pl-4'>You Opportunities</h1>
+      <section className="bg-light rounded-lg w-4/5 h-32 mt-2 py-2 px-4">
+        <h2>If you can code</h2>
+      </section>
+      <section className="bg-light rounded-lg w-4/5 h-32 mt-2 py-2 px-4">
+        <h2>If you can&apos;t code</h2>
+      </section>
+      <section className='flex flex-col items-center mt-2'>
+        <h1 className='text-3xl'>Members</h1>
+        <div className='flex gap-4 m-2'>
           {memberCardInfo.map((member) => (
             <MemberCard
               key={member.name}
