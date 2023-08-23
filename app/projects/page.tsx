@@ -46,7 +46,7 @@ export default function Projects() {
 
   return (
     <main className='flex flex-col flex-1 p-4 items-center gap-4'>
-      <section className='w-4/5 bg-light px-4 py-2 rounded-lg sticky top-14 shadow-md'>
+      <section className='w-4/5 bg-light px-4 py-2 rounded-lg sticky top-14 shadow-md max-sm:w-11/12'>
         <input
           type='text'
           placeholder='Search Projects'
@@ -55,7 +55,7 @@ export default function Projects() {
           className='bg-highlight p-2 rounded-lg w-full placeholder:text-dark focus:outline-none'
         />
       </section>
-      <section className='w-4/5'>
+      <section className='w-4/5 max-sm:w-11/12'>
         {projects.length > 0 ? (
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             {filteredProjects.map((project: any) => (

@@ -57,7 +57,7 @@ export default function About() {
       <h1 className='text-3xl font-semibold text-center'>
         The SHS Web Dev Club
       </h1>
-      <section className='flex w-4/5 gap-2 mt-2 md-lg:h-32 max-md-lg:flex-col'>
+      <section className='flex w-4/5 gap-2 mt-2 md-lg:h-32 max-md-lg:flex-col max-sm:w-11/12'>
         <div className='bg-light py-2 px-4 rounded-lg'>
           <h2 className='text-xl font-semibold mb-1'>Goals & Objectives</h2>
           <p className='text-lg'>
@@ -72,7 +72,7 @@ export default function About() {
           </p>
         </div>
       </section>
-      <section className='flex w-4/5 gap-2 max-sm:flex-col'>
+      <section className='flex w-4/5 gap-2 max-sm:flex-col max-sm:w-11/12'>
         <div className='bg-light py-2 px-4 rounded-lg flex-1'>
           <h2 className='text-xl font-semibold mb-1'>Technologies</h2>
           <ul className='px-2 text-lg'>
@@ -103,7 +103,7 @@ export default function About() {
         </div>
       </section>
       <h1 className='text-3xl m-2 w-4/5 pl-4'>You Opportunities</h1>
-      <section className='bg-light rounded-lg w-4/5 py-2 px-4'>
+      <section className='bg-light rounded-lg w-4/5 py-2 px-4 max-sm:w-11/12'>
         <h2 className='text-xl font-semibold mb-1'>If you can code</h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
           <ActivityCard content='Work on group projects to build mobile and web apps.' />
@@ -111,15 +111,15 @@ export default function About() {
           <ActivityCard content='Help guide fellow members in their learning.' />
           <ActivityCard content='Participate in / Organize hackathons' />
           <ActivityCard content='Participate in code review sessions to give feedback on the code of other members.' />
-          <ActivityCard content='' />
+          <ActivityCard content='Create content for websites, such as graphics.' />
         </div>
       </section>
-      <section className='bg-light rounded-lg w-4/5 py-2 px-4'>
+      <section className='bg-light rounded-lg w-4/5 py-2 px-4 max-sm:w-11/12'>
         <h2 className='text-xl font-semibold mb-1'>If you can&apos;t code</h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
           <ActivityCard content='Learn to code!' links={[["Code.Org", "https://code.org/"], ["Scratch", "https://scratch.mit.edu/"]]} />
           <ActivityCard content='Participate in testing sessions to provide feedback on websites and apps created by members.' />
-          <ActivityCard content='Help create content of websites and apps,such as designing graphics.' />
+          <ActivityCard content='Help create content for websites and apps, such as designing graphics.' />
           <ActivityCard content='Participate in code review sessions to give feedback on the code of other members.' />
           <ActivityCard content='Help with project management tasks, such as organizing schedules,coordinating team members, and tracking progress.' />
           <ActivityCard content='Create app ideas for members to develop.' />
