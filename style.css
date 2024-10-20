@@ -36,6 +36,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 4px;
 }
 
 .main-header a {
