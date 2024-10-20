@@ -48,5 +48,3 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Error loading projects:", error);
     });
 });
-
-console.log("help");
