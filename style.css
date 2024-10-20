@@ -49,6 +49,10 @@ main {
   transition: transform 0.3s ease-in-out;
 }
 
+.main-header a:hover {
+  transform: scale(1.05);
+}
+
 .projects {
   gap: 4px;
   display: grid;
