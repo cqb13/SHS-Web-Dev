@@ -36,7 +36,6 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 4px;
 }
 
 .main-header a {
@@ -116,6 +115,7 @@ footer {
 footer a {
   all: unset;
   cursor: pointer;
+  text-align: center;
 }
 
 footer a:hover {
@@ -147,5 +147,22 @@ footer a:hover {
 @media screen and (max-width: 565px) {
   .projects {
     grid-template-columns: auto;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  footer {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .main-header {
+    flex-direction: column;
+  }
+
+  .main-header a {
+    width: 100%;
   }
 }
