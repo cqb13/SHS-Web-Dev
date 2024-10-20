@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Talon Games",
+    "description": "Games for the Sharon Talon Newspaper.",
+    "code": "https://github.com/Talon-Games/talon-games",
+    "view": "https://games.shstalon.com/"
+  },
+  {
+    "name": "SHS Hackathon Website",
+    "description": "The official website for the SHS Hackathon, a STEM event hosted by the Sharon High School Web Development Club & Girls Who Code.",
+    "code": "https://github.com/cqb13/shs-hackathon",
+    "view": "https://hackathon.shsdevs.com/"
+  },
+  {
+    "name": "Slavic Club Website",
+    "description": "The offical website for the SHS Slavic Cultural Club.",
+    "code": "https://github.com/cqb13/slavic-club-website",
+    "view": "https://slavic-club.shsdevs.com/"
+  },
+  {
+    "name": "Food Pantry Club Website",
+    "description": "The offical website for the SHS Food Pantry Club",
+    "code": "https://github.com/cqb13/food-pantry-club-website",
+    "view": "https://foodpantry.shsdevs.com/"
+  }
+]
