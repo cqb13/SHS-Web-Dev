@@ -22,5 +22,11 @@
     "description": "The offical website for the SHS Food Pantry Club",
     "code": "https://github.com/cqb13/food-pantry-club-website",
     "view": "https://foodpantry.shsdevs.com/"
+  },
+  {
+    "name": "Senior Countdowns",
+    "description": "Countdowns for Seniors at SHS.",
+    "code": "https://github.com/cqb13/senior-countdowns",
+    "view": "https://countdowns.shsdevs.com/"
   }
 ]
