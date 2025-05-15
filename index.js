@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
           codeLink.href = project.code;
           codeLink.target = "_blank";
           codeLink.textContent = "Code";
+          projectCardInteract.appendChild(codeLink);
         }
 
         const viewLink = document.createElement("a");
@@ -37,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
         viewLink.target = "_blank";
         viewLink.textContent = "View";
 
-        projectCardInteract.appendChild(codeLink);
         projectCardInteract.appendChild(viewLink);
 
         projectCard.appendChild(projectCardHeader);
