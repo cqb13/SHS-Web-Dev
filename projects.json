@@ -28,5 +28,11 @@
     "description": "Countdowns for Seniors at SHS.",
     "code": "https://github.com/cqb13/senior-countdowns",
     "view": "https://countdowns.shsdevs.com/"
+  },
+  {
+    "name": "SPS Salaries",
+    "description": "School Public Schools Salaries from town reports between 2009 and 2024",
+    "code": "",
+    "view": "https://sps-salaries.shsdevs.com/"
   }
 ]

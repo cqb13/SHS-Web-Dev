@@ -25,10 +25,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const projectCardInteract = document.createElement("div");
         projectCardInteract.className = "project-card-interact";
 
-        const codeLink = document.createElement("a");
-        codeLink.href = project.code;
-        codeLink.target = "_blank";
-        codeLink.textContent = "Code";
+        if (project.code != "") {
+          const codeLink = document.createElement("a");
+          codeLink.href = project.code;
+          codeLink.target = "_blank";
+          codeLink.textContent = "Code";
+        }
 
         const viewLink = document.createElement("a");
         viewLink.href = project.view;
